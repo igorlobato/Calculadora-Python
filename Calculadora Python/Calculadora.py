@@ -1,12 +1,5 @@
 from tkinter import *
-
-
-#cores
-preto = "#1e1f1e"
-branco = "#feffff"
-azul = "#38576b"
-cinza = "#ECEFF1"
-laranja = "#FFAB40"
+from style.Style import *
 
 
 #Principal
@@ -29,6 +22,7 @@ valorTexto = StringVar()
 appLabel = Label(FrameTela, textvariable=valorTexto, width=16, height=2, padx=7, relief=FLAT, anchor="e", justify=RIGHT, font=('Ivy 18'), bg = preto, fg=branco)
 appLabel.place(x=0, y=0)
 
+valorTexto.set(str(0.0))
 
 todosValores = ''
 
@@ -40,8 +34,13 @@ def entrarValores(event):
 
 def calcular():
     global todosValores
-    resultado = eval(todosValores)
-    valorTexto.set(str(resultado))
+    try:
+        resultado = eval(todosValores)
+        valorTexto.set(str(resultado))
+        todosValores = str(resultado)
+    except:
+        valorTexto.set("Error")
+        todosValores = ""
 
 def limparTela():
     global todosValores
